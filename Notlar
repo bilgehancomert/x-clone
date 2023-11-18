@@ -1,0 +1,51 @@
+Bu Projede Twitter Clone unu yapacapiz.
+
+- React geliştirme yaparken arka planda node.js e gerek duyuyor. Build aldiğinizda eğerki next.js kullanmiyorsaniz node.js e ihtiyaç duymuyor. Html, css ve js dosyalari yeterli oluyor. 
+
+- npm node un paket yöneticisidir. (node modules olduğu heryerde npm vardir.) Eğer her yeni react projesinde npm ile create ederseniz her projeye gerekli paketleri ayri ayri kuruyorsunuz bu zamanla ciddi veri depolamaya sebep oluyor. node module lerininin kapladiği yeri npx npkill komutu ile öğrene bilirsiniz. (Bu komutu ilk defa kullanacaklarda npkill paketini yüklemek için onay isteyecek. Yükleyiniz.) Bu sorunu çözmek için tüm kurulan paketleri tek bir yerde depolayan her yeni projede ihtiyaçlara göre varsa ortak depodan alan yoksa yükleyen pnpm komutunu kullanmanizi tavsiye ediyorum.
+
+pnpm kullanabilmek için npm i pnpm -g diyoruz. daha sonra pnpm install diyoruz. (eğer powershell de bu işlemleri yaparsaniz hata alabilirsiniz. Git cmd kulanin.)
+
+- Projeyi yeni kurduğumuzda main.jsx dosyasinda hazirda gelen <React.StrictMode></React.StrictMode> kapsayicilari silmezseniz. Projede yaptiğiniz her şey iki kez render edilmiş olacaktir. Bu durum react in kendi tarafinda güvenlik için kullaniliyor.
+
+- js ile jsx arasindaki fark;
+  JavaScript (.js) Dosyalari:
+  Bu dosya uzantisi, JavaScript kodunu içeren genel JavaScript dosyalarini temsil eder.
+  JS dosyalari, JavaScript dilinde yazilmiş her tür JavaScript kodunu içerebilir, ancak genellikle React bileşenleri, iş mantiği, yardimci fonksiyonlar ve diğer genel JavaScript kodlari içerir.
+  JSX içermeyen, sadece JavaScript kodunu barindiran dosyalar için kullanilir.
+
+  JSX (.jsx) Dosyalari:
+  JSX, JavaScript e XML benzeri bir söz dizimi ekleyen bir dil uzantisidir. JSX, React tarafindan benimsenmiş ve React bileşenleri oluştururken kullanilan bir söz dizimidir.
+  React bileşenlerini daha açik ve okunabilir bir şekilde tanimlamak için JSX siklikla tercih edilir. JSX, HTML benzeri bir yapiya sahiptir ve JavaScript içinde bu yapiyi kullanmaniza olanak tanir.
+  JSX dosyalari, React uygulamalarinda genellikle bileşenleri tanimlamak için kullanilir. React uygulamalarinda JSX kullanmak, UI nin tasarimini ve oluşturulmasini kolaylaştirabilir.
+  React uygulamalarinda genellikle, JavaScript dosyalari (.js) genel JavaScript kodunu içerirken, JSX dosyalari (.jsx) React bileşenlerini tanimlamak için kullanilir. Ancak, bu bir zorunluluk değildir ve React, JSX kullanmadan da kullanilabilir.
+
+  Hangi Dosya Uzantisini Kullanmaliyim?
+  React topluluğunda, genellikle .jsx uzantisini kullanmak yaygindir, ancak .js uzantisi da yaygin olarak kabul edilir. Bu tercih genellikle proje veya ekibin geliştirme standartlarina bağlidir.
+
+
+- jsx dosyalarinda export işlemini export defoult name şeklinde yaparsak. Export yaptiğimiz şeyi import ederken istediğimiz isim ile direk import edebiliyoruz. yoksa şöyle import olurdu. (import {name as name2} from ".../.../...") gibi as ile isim değiştirmemiz gerekirdi.
+
+-import path inde ./ bulunduğu klasörü temsil ediyor. bir üst klasöre gitmek için ../ kullanmamiz gerekiyor. Bunlarla uğraşmak istemiyorsan ~ (tilda işaretini kullanabilirsin) Bunun için ilk olarak proje dosyanin ana kasöründe jsconfig.json dosyasi oluştruyorsun daha sonra içine 
+{
+	"compilerOptions": {
+	    "baseUrl": "./src",
+	    "paths": {
+	      "~/*": ["./*"]
+	    }
+	}
+}
+
+Kodunu ekliyorsun. Daha sonra projenin ana dizininde olan vite.config.js dosyasinda defineConfig fonsiyonu içine
+resolve: {
+    alias: {
+      '~': path.resolve(__dirname, 'src'),
+    },
+  },
+
+kodunu ekliyorsun. Daha sonra yine vite.config.js dosyasina import * as path from "path"  importunu yapiyorsun. Bundan sonra path ler ~ ile gösteriliyor.
+
+- Komponentler büyük harfle başlar.
+
+
+16.40 da kaldım
